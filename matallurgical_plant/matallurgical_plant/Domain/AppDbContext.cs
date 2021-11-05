@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace matallurgical_plant.Domain
 {
-    public class AppDbContext:IdentityDbContext
+    public partial class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+            Database.EnsureCreated();
+        }
 
         public DbSet<User> Users { get; set; }
 
@@ -31,6 +35,14 @@ namespace matallurgical_plant.Domain
                 Price = 50,
                 Quantity = 120,
                 Material = "Аллюминий"
+            },
+            new Product
+            {
+                Id = 2,
+                NameProduct = "sdfsdfsdf",
+                Price = 530,
+                Quantity = 2120,
+                Material = "Жевамб"
             });
         }
     }

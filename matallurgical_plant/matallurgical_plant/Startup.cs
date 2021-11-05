@@ -24,12 +24,16 @@ namespace matallurgical_plant
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
             services.AddControllersWithViews();
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
-         "Server=(localdb)\\mssqllocaldb; Database=CourseWork; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"
-         ));
+            services.AddControllers();
+
+            services.AddDbContext<AppDbContext>
+                (options => options.UseSqlServer(
+                    "Server=(localdb)\\mssqllocaldb; Database=CourseWork; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"));
+
+            services.IoC();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,10 +49,12 @@ namespace matallurgical_plant
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
