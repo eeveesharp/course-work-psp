@@ -25,7 +25,7 @@ namespace matallurgical_plant.Services
             _db.SaveChanges();
         }
 
-        public void Update(int id, Product item)
+        public void Edit(int id, Product item)
         {
             Product product = _db.Products
         .Include(i => item.Material == i.Material)
@@ -36,7 +36,6 @@ namespace matallurgical_plant.Services
         .Single();
 
             _db.Update(product);
-
         }
 
         public IEnumerable<Product> GetAll()

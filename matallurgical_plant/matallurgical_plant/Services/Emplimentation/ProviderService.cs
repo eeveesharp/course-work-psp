@@ -40,7 +40,7 @@ namespace matallurgical_plant.Services.Emplimentation
             throw new NotImplementedException();
         }
 
-        public void Update(int id,Provider item)
+        public void Edit(int id,Provider item)
         {
             throw new NotImplementedException();
         }

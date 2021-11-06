@@ -45,7 +45,7 @@ namespace matallurgical_plant.Services.Emplimentation
             throw new NotImplementedException();
         }
 
-        public void Update(int id, User item)
+        public void Edit(int id, User item)
         {
             throw new NotImplementedException();
         }
