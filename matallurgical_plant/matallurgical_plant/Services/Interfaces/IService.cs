@@ -10,8 +10,10 @@ namespace matallurgical_plant.Services.Interfaces
 
         void Create(T item); // создание объекта
 
-        void Update(int id,T item); // обновление объекта
+        void Edit(int id,T item); // обновление объекта
 
         void Delete(int id); // удаление объекта по id
+
+        void Add();//добавление объекта 
     }
 }

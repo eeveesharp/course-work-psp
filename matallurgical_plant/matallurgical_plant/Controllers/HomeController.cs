@@ -57,9 +57,9 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Edit(int id,Product model)
         {
-            _productServices.Update(id, model);
+            _productServices.Edit(id, model);
 
-            return RedirectToAction("Index");
+            return View("EditProduct");
         }
     }
 }

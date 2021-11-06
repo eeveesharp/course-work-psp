@@ -15,6 +15,11 @@ namespace matallurgical_plant.Services.Emplimentation
             _db = db;
         }
 
+        public void Add()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Create(User item)
         {
             throw new NotImplementedException();
