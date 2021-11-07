@@ -13,7 +13,5 @@ namespace matallurgical_plant.Services.Interfaces
         void Edit(int id, T item); // обновление объекта
 
         void Delete(int id); // удаление объекта по id
-
-        void Add();//добавление объекта 
     }
 }

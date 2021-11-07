@@ -49,5 +49,25 @@ namespace matallurgical_plant.Services.Emplimentation
         {
             throw new NotImplementedException();
         }
+
+        public User GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetRoleByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetByLogin(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsEmailExist(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

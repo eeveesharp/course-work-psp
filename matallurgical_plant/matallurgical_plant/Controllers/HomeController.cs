@@ -1,10 +1,13 @@
-﻿using matallurgical_plant.Models;
+﻿using matallurgical_plant.Domain;
+using matallurgical_plant.Models;
 using matallurgical_plant.Services;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace matallurgical_plant.Controllers
 {
@@ -12,9 +15,10 @@ namespace matallurgical_plant.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productServices;
+        private readonly AppDbContext _db;
 
         public HomeController(
-            ILogger<HomeController> logger, 
+            ILogger<HomeController> logger,
             IProductService productServices)
         {
             _logger = logger;
@@ -25,14 +29,24 @@ namespace matallurgical_plant.Controllers
         public IActionResult Index()
         {
             var model = _productServices.GetAll();
+
             return View(model);
         }
 
-        public IActionResult List()
+        [HttpGet]
+        public IActionResult Add(int id)
         {
-            var item = _productServices.GetAll();
+            var model = _productServices.GetById(id);
 
-            return View(item);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Add(Product model)
+        {
+            _productServices.Create(model);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -48,18 +62,28 @@ namespace matallurgical_plant.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var model = _productServices.GetById(id);
+
+            return View("EditProduct", model);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id,Product model)
+        public IActionResult EditProduct(Product model)
         {
-            _productServices.Edit(id, model);
+            _productServices.Edit(model.Id, model);
 
-            return View("EditProduct");
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var model = _productServices.GetById(id);
+
+            return View("Details", model);
         }
     }
 }

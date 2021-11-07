@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace matallurgical_plant.Services
 {
@@ -27,15 +28,8 @@ namespace matallurgical_plant.Services
 
         public void Edit(int id, Product item)
         {
-            Product product = _db.Products
-        .Include(i => item.Material == i.Material)
-        .Include(i => item.NameProduct == i.NameProduct)
-        .Include(i => item.Price == i.Price)
-        .Include(i => item.Quantity == i.Quantity)
-        .Where(i => i.Id == id)
-        .Single();
-
-            _db.Update(product);
+            _db.Products.Update(item);
+            _db.SaveChanges();
         }
 
         public IEnumerable<Product> GetAll()
@@ -45,17 +39,13 @@ namespace matallurgical_plant.Services
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Products.Where(product => product.Id == id).FirstOrDefault();
         }
 
         public void Create(Product item)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Add()
-        {
-            throw new NotImplementedException();
+            _db.Products.Add(item);
+            _db.SaveChanges();
         }
     }
 }

@@ -4,40 +4,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">FUCKINGCOURSE</h1>
     
 
-    @Html.ActionLink("Add product ", "AddProduct", new { })
+    @Html.ActionLink("Add product ", "Add")
     <table>
         <tr>
-            <th>Номер</th>
             <th>Название</th>
-            <th>Материал</th>
             <th>Цена</th>
-            <th>Кол-во</th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.Id)
-                </td>
-
-                <td>
                     @Html.DisplayFor(model => item.NameProduct)
                 </td>
 
                 <td>
-                    @Html.DisplayFor(model => item.Material)
-                </td>
-
-                <td>
                     @Html.DisplayFor(model => item.Price)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => item.Quantity)
                 </td>
 
                 <td>
@@ -48,5 +33,12 @@
 
             </tr>
         }
-    </table>
+    </table>*@
+
+    
+</div>
+<div class="text-center">
+    <h2 class="display-4">Welcome</h2>
+    <h3>@Html.ActionLink("Login", "Login", "Account")</h3>
+    <h3>@Html.ActionLink("Register", "Register", "Account")</h3>
 </div>
