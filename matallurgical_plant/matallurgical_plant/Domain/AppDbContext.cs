@@ -20,7 +20,7 @@ namespace matallurgical_plant.Domain
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Provider> Providers { get; set; }
+        public DbSet<Specification> Spetifications { get; set; }
 
         public DbSet<Contract> Contracts { get; set; }
 

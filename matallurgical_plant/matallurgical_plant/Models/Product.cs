@@ -22,6 +22,6 @@ namespace matallurgical_plant.Models
         [Display(Name = "Материал")]
         public string Material { get; set; }
 
-        public List<Contract> Contracts { get; set; } = new List<Contract>();
+        public List<Specification> Specifications { get; set; } = new List<Specification>();
     }
 }

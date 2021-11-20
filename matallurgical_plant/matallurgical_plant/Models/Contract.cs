@@ -13,16 +13,15 @@ namespace matallurgical_plant.Models
 
         public User User { get; set; }
 
-        public int ProductId { get; set; }
+        public int SpecificationId { get; set; }
 
-        public Product Product { get; set; }
+        public Specification Specification { get; set; }
 
-        public int ProviderId { get; set; }
+        public string Provider { get; set; }
 
-        public Provider Provider { get; set; }
+        public int Quantity { get; set; }
 
-        public string DeliveryTime { get; set; }
-
-        public string DeliveryAdress { get; set; }
+        public string FinalPrice { get; set; }
+       
     }
 }

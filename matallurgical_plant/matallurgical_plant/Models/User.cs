@@ -9,13 +9,11 @@ namespace matallurgical_plant.Models
     {
         public int Id { get; set; }
 
-        public string RoleId { get; set; }
+        public string FirstName { get; set; }
 
-        public string UserLogin { get; set; }
+        public string SecondName { get; set; }
 
-        public string UserEmail { get; set; }
-
-        public string UserPassword { get; set; }
+        public string ThirdName { get; set; }
 
         public List<Contract> Contracts { get; set; } = new List<Contract>();
     }

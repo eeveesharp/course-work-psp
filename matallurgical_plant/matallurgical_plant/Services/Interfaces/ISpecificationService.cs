@@ -2,7 +2,7 @@
 
 namespace matallurgical_plant.Services.Interfaces
 {
-    public interface IProviderService : IService<Provider>
+    public interface ISpecificationService : IService<Specification>
     {
     }
 }

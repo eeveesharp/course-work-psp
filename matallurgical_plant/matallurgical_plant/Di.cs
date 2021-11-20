@@ -16,7 +16,7 @@ namespace matallurgical_plant
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IContractService, ContractService>();
-            services.AddTransient<IProviderService, ProviderService>();
+            services.AddTransient<ISpecificationService, SpecificationService>();
         }
     }
 }
