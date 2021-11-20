@@ -3,6 +3,7 @@ using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace matallurgical_plant.Services.Emplimentation
 {
@@ -15,59 +16,33 @@ namespace matallurgical_plant.Services.Emplimentation
             _db = db;
         }
 
-        public void Add()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Create(User item)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(User item)
-        {
-            throw new NotImplementedException();
+            User user = _db.Users.Where(user => user.Id == id).FirstOrDefault();
+            _db.Users.Remove(user);
+            _db.SaveChanges();
         }
 
         public void Edit(int id, User item)
         {
-            throw new NotImplementedException();
+            _db.Users.Update(item);
+            _db.SaveChanges();
         }
 
-        public User GetByEmail(string email)
+        public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _db.Users.ToList();
         }
 
-        public string GetRoleByEmail(string email)
+        public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Users.Where(user => user.Id == id).FirstOrDefault();
         }
 
-        public User GetByLogin(string login)
+        public void Create(User item)
         {
-            throw new NotImplementedException();
+            _db.Users.Add(item);
+            _db.SaveChanges();
         }
-
-        public bool IsEmailExist(string email)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    }   
 }

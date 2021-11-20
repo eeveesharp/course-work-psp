@@ -1,0 +1,41 @@
+﻿@model List<matallurgical_plant.Models.Product>
+
+@{
+    ViewData["Title"] = "Product Page";
+}
+
+<style>
+    .text-center {
+        background-image: url(https://github.com/ultoRjs/psp/blob/lab2/lab2/back3.jpg?raw=true);
+        height:100%;
+    }
+</style>
+<div class="text-center">
+
+    @Html.ActionLink("Add product ", "AddProduct")
+    <table>
+        <tr>
+            <th>Название     </th>
+            <th>Цена     </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.NameProduct)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Price)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit ", "EditProduct", new { id = item.Id, item })
+                    @Html.ActionLink("Details ", "DetailsProduct", new { id = item.Id })
+                    @Html.ActionLink("Delete ", "DeleteProduct", new { id = item.Id })
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>

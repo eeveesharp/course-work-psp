@@ -6,88 +6,82 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using matallurgical_plant.Models;
 using matallurgical_plant.Domain;
+using Microsoft.Extensions.Logging;
+using matallurgical_plant.Services.Interfaces;
 
 namespace matallurgical_plant.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IProductService _productServices;
+        private readonly AppDbContext _db;
+
+        public ProductController(
+            ILogger<HomeController> logger,
+            IProductService productServices)
+        {
+            _productServices = productServices;
+
+        }
         // GET: ProductController/Index
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            //using (AppDbContext db = new AppDbContext())
-            //{
+            var model = _productServices.GetAll();
 
-            //}
-                return View();
+            return View(model);
         }
 
-        // GET: ProductController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult AddProduct(int id)
         {
-            return View();
+            var model = _productServices.GetById(id);
+
+            return View(model);
         }
 
-        // GET: ProductController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProductController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult AddProduct(Product model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _productServices.Create(model);
+
+            return RedirectToAction("Index");
         }
 
-        // GET: ProductController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            _productServices.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpGet]
+        public IActionResult EditProduct(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var model = _productServices.GetById(id);
+
+            return View("EditProduct", model);
         }
 
-        // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public IActionResult EditProduct(Product model)
         {
-            return View();
+            _productServices.Edit(model.Id, model);
+
+            return RedirectToAction("Index");
         }
 
-        // POST: ProductController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpGet]
+        public IActionResult DetailsProduct(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var model = _productServices.GetById(id);
+
+            return View("DetailsProduct", model);
         }
     }
 }

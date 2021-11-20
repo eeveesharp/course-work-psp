@@ -34,7 +34,7 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add(int id)
+        public IActionResult AddProduct(int id)
         {
             var model = _productServices.GetById(id);
 
@@ -42,7 +42,7 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Product model)
+        public IActionResult AddProduct(Product model)
         {
             _productServices.Create(model);
 
@@ -63,7 +63,7 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult EditProduct(int id)
         {
             var model = _productServices.GetById(id);
 
@@ -79,11 +79,11 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult DetailsProduct(int id)
         {
             var model = _productServices.GetById(id);
 
-            return View("Details", model);
+            return View("DetailsProduct", model);
         }
     }
 }

@@ -21,7 +21,6 @@ namespace matallurgical_plant.Models
 
         public int Quantity { get; set; }
 
-        public string FinalPrice { get; set; }
-       
+        public string FinalPrice { get; set; }    
     }
 }
