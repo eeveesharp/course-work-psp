@@ -1,0 +1,61 @@
+﻿@model List<matallurgical_plant.Models.Contract>
+
+@{
+    ViewData["Title"] = "Contract Page";
+}
+
+<style>
+    .text-center {
+        background-image: url(https://github.com/ultoRjs/psp/blob/lab2/lab2/back3.jpg?raw=true);
+        height: 100%;
+    }
+</style>
+<div class="text-center">
+
+    @Html.ActionLink("Add contract ", "Add")
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Id Клиента</th>
+            <th>Id Спецификации</th>
+            <th>Поставщик</th>
+            <th>Количество</th>
+            <th>Итоговая цена</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.UserId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.SpecificationId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Provider)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Quantity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.FinalPrice)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit ", "Edit", new { id = item.Id, item })
+                    @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete ", "Delete", new { id = item.Id })
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>

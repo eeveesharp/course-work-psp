@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using matallurgical_plant.Domain;
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 
@@ -9,29 +10,40 @@ namespace matallurgical_plant.Services.Emplimentation
 {
     public class SpecificationService : ISpecificationService
     {
-        public void Create(Specification item)
+         private readonly AppDbContext _db;
+
+        public SpecificationService(AppDbContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Specification specification = _db.Spetifications.Where(specification => specification.Id == id).FirstOrDefault();
+            _db.Spetifications.Remove(specification);
+            _db.SaveChanges();
         }
 
         public void Edit(int id, Specification item)
         {
-            throw new NotImplementedException();
+            _db.Spetifications.Update(item);
+            _db.SaveChanges();
         }
 
         public IEnumerable<Specification> GetAll()
         {
-            throw new NotImplementedException();
+            return _db.Spetifications.ToList();
         }
 
         public Specification GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Spetifications.Where(specification => specification.Id == id).FirstOrDefault();
+        }
+
+        public void Create(Specification item)
+        {
+            _db.Spetifications.Add(item);
+            _db.SaveChanges();
         }
     }
 }

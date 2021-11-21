@@ -4,6 +4,5 @@ namespace matallurgical_plant.Services.Interfaces
 {
     public interface IContractService : IService<Contract>
     {
-
     }
 }

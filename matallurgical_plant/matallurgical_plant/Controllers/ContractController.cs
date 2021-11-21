@@ -6,22 +6,20 @@ using Microsoft.Extensions.Logging;
 
 namespace matallurgical_plant.Controllers
 {
-    public class ProductController : Controller
+    public class ContractController : Controller
     {
-        private readonly IProductService _productServices;
-        private readonly AppDbContext _db;
+        private readonly IContractService _contractServices;
 
-        public ProductController(
-            ILogger<HomeController> logger,
-            IProductService productServices)
+        public ContractController(
+            IContractService contractServices)
         {
-            _productServices = productServices;
+            _contractServices = contractServices;
 
         }
         // GET: ProductController/Index
         public IActionResult Index()
         {
-            var model = _productServices.GetAll();
+            var model = _contractServices.GetAll();
 
             return View(model);
         }
@@ -29,15 +27,15 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Add(int id)
         {
-            var model = _productServices.GetById(id);
+            var model = _contractServices.GetById(id);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Add(Product model)
+        public IActionResult Add(Contract model)
         {
-            _productServices.Create(model);
+            _contractServices.Create(model);
 
             return RedirectToAction("Index");
         }
@@ -45,7 +43,7 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            _productServices.Delete(id);
+            _contractServices.Delete(id);
 
             return RedirectToAction("Index");
         }
@@ -56,27 +54,27 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditProduct(int id)
+        public IActionResult Edit(int id)
         {
-            var model = _productServices.GetById(id);
+            var model = _contractServices.GetById(id);
 
-            return View("EditProduct", model);
+            return View("Edit", model);
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Product model)
+        public IActionResult Edit(Contract model)
         {
-            _productServices.Edit(model.Id, model);
+            _contractServices.Edit(model.Id, model);       
 
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult DetailsProduct(int id)
+        public IActionResult Details(int id)
         {
-            var model = _productServices.GetById(id);
+            var model = _contractServices.GetById(id);
 
-            return View("DetailsProduct", model);
+            return View("Details", model);
         }
     }
 }
