@@ -7,20 +7,24 @@ using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace matallurgical_plant.Controllers
 {
     public class SpecificationController : Controller
     {
         private readonly ISpecificationService _specificationServices;
+        private readonly IProductService _productService;
         private readonly AppDbContext _db;
 
         public SpecificationController(
-            ISpecificationService specificationServices)
+            ISpecificationService specificationServices,
+            IProductService productService)
         {
             _specificationServices = specificationServices;
-
+            _productService = productService;
         }
+
         // GET: ProductController/Index
         public IActionResult Index()
         {
@@ -33,6 +37,8 @@ namespace matallurgical_plant.Controllers
         public IActionResult Add(int id)
         {
             var model = _specificationServices.GetById(id);
+            var products = _productService.GetAll();
+            ViewBag.Products = new SelectList(products, "Id", "NameProduct");
 
             return View(model);
         }
@@ -62,6 +68,8 @@ namespace matallurgical_plant.Controllers
         public IActionResult Edit(int id)
         {
             var model = _specificationServices.GetById(id);
+            var products = _productService.GetAll();
+            ViewBag.Products = new SelectList(products, "Id", "NameProduct");
 
             return View("Edit", model);
         }
@@ -79,7 +87,13 @@ namespace matallurgical_plant.Controllers
         {
             var model = _specificationServices.GetById(id);
 
-            return View("Details", model);
+            ProductSpecificationViewModel productSpecification = new ProductSpecificationViewModel()
+            {
+                Id = model.Id,
+                ProductName = model.Product.NameProduct,
+                DeliveryTime = model.DeliveryTime
+            };
+            return View("Details", productSpecification);
         }
     }
 }

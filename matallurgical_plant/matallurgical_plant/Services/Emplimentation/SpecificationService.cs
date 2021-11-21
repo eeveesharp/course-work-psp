@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using matallurgical_plant.Domain;
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace matallurgical_plant.Services.Emplimentation
 {
@@ -37,7 +38,7 @@ namespace matallurgical_plant.Services.Emplimentation
 
         public Specification GetById(int id)
         {
-            return _db.Spetifications.Where(specification => specification.Id == id).FirstOrDefault();
+            return _db.Spetifications.Where(specification => specification.Id == id).Include(x => x.Product).FirstOrDefault();
         }
 
         public void Create(Specification item)
