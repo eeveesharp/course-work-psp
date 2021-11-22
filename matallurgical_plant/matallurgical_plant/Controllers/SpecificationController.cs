@@ -93,6 +93,7 @@ namespace matallurgical_plant.Controllers
                 ProductName = model.Product.NameProduct,
                 DeliveryTime = model.DeliveryTime
             };
+
             return View("Details", productSpecification);
         }
     }

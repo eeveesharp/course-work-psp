@@ -2,6 +2,7 @@
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace matallurgical_plant.Controllers
@@ -9,10 +10,15 @@ namespace matallurgical_plant.Controllers
     public class ContractController : Controller
     {
         private readonly IContractService _contractServices;
+        private readonly ISpecificationService _specificationServices;
+        private readonly IUserService _userService;
 
-        public ContractController(
+        public ContractController(ISpecificationService specificationServices,
+            IUserService userService,
             IContractService contractServices)
         {
+            _userService = userService;
+            _specificationServices = specificationServices;
             _contractServices = contractServices;
 
         }
@@ -27,9 +33,17 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Add(int id)
         {
+            //var model = _contractServices.GetById(id);
+
             var model = _contractServices.GetById(id);
+            var specifications = _specificationServices.GetAll();
+            var users = _userService.GetAll();
+            ViewBag.Specifications = new SelectList(specifications, "Id","Id");
+            ViewBag.Users = new SelectList(users, "Id", "SecondName");
 
             return View(model);
+
+            //return View(model);
         }
 
         [HttpPost]

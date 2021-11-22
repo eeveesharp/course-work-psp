@@ -1,6 +1,7 @@
 ﻿using matallurgical_plant.Domain;
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace matallurgical_plant.Services.Emplimentation
 
         public Contract GetById(int id)
         {
-            return _db.Contracts.Where(contract => contract.Id == id).FirstOrDefault();
+            return _db.Contracts.Where(contract => contract.Id == id).Include(x => x.Specification).Include(x => x.User).FirstOrDefault();
         }
 
         public void Create(Contract item)
