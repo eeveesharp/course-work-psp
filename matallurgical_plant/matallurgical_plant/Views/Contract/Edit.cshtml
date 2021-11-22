@@ -13,29 +13,22 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
+                <label asp-for="UserId"></label>
+                <select asp-for="UserId" asp-items="ViewBag.Users"></select>
             </div>
             <div class="form-group">
-                <label asp-for="SpecificationId" class="control-label"></label>
-                <input asp-for="SpecificationId" class="form-control" />
-                <span asp-validation-for="SpecificationId" class="text-danger"></span>
+                <label asp-for="SpecificationId"></label>
+                <select asp-for="SpecificationId" asp-items="ViewBag.Specifications"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Provider" class="control-label"></label>
-                <input asp-for="Provider" class="form-control" />
+                <input readonly value="ОАО МеталлИнтертрейдинг" asp-for="Provider" class="form-control" />
                 <span asp-validation-for="Provider" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FinalPrice" class="control-label"></label>
-                <input asp-for="FinalPrice" class="form-control" />
-                <span asp-validation-for="FinalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -12,14 +12,17 @@ namespace matallurgical_plant.Controllers
         private readonly IContractService _contractServices;
         private readonly ISpecificationService _specificationServices;
         private readonly IUserService _userService;
+        private readonly IProductService _productService;
 
         public ContractController(ISpecificationService specificationServices,
             IUserService userService,
-            IContractService contractServices)
+            IContractService contractServices,
+            IProductService productService)
         {
             _userService = userService;
             _specificationServices = specificationServices;
             _contractServices = contractServices;
+            _productService = productService;
 
         }
         // GET: ProductController/Index
@@ -33,8 +36,6 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Add(int id)
         {
-            //var model = _contractServices.GetById(id);
-
             var model = _contractServices.GetById(id);
             var specifications = _specificationServices.GetAll();
             var users = _userService.GetAll();
@@ -42,14 +43,18 @@ namespace matallurgical_plant.Controllers
             ViewBag.Users = new SelectList(users, "Id", "SecondName");
 
             return View(model);
-
-            //return View(model);
         }
 
         [HttpPost]
         public IActionResult Add(Contract model)
         {
+            var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
+            model.FinalPrice = (price * model.Quantity).ToString();
             _contractServices.Create(model);
+
+            var product = _productService.GetById(model.Specification.Product.Id);
+            product.Quantity -= model.Quantity;
+            _productService.Edit(product.Id, product);
 
             return RedirectToAction("Index");
         }
@@ -57,6 +62,7 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
+
             _contractServices.Delete(id);
 
             return RedirectToAction("Index");
