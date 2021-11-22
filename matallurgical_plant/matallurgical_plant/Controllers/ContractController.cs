@@ -39,7 +39,7 @@ namespace matallurgical_plant.Controllers
             var model = _contractServices.GetById(id);
             var specifications = _specificationServices.GetAll();
             var users = _userService.GetAll();
-            ViewBag.Specifications = new SelectList(specifications, "Id","Id");
+            ViewBag.Specifications = new SelectList(specifications, "Id", "Id");
             ViewBag.Users = new SelectList(users, "Id", "SecondName");
 
             return View(model);
@@ -48,13 +48,28 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Add(Contract model)
         {
-            var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
-            model.FinalPrice = (price * model.Quantity).ToString();
-            _contractServices.Create(model);
 
-            var product = _productService.GetById(model.Specification.Product.Id);
-            product.Quantity -= model.Quantity;
-            _productService.Edit(product.Id, product);
+          
+
+            if (model.Quantity <= 0)
+            {
+                ModelState.AddModelError("Quantity", "Вы не можете указать количество 0 или меньше");
+                return View(model);
+            }
+            else
+            {
+                var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
+
+                model.FinalPrice = (price * model.Quantity).ToString();
+
+                _contractServices.Create(model);
+
+                var product = _productService.GetById(model.Specification.Product.Id);
+
+                product.Quantity -= model.Quantity;
+
+                _productService.Edit(product.Id, product);
+            }
 
             return RedirectToAction("Index");
         }
@@ -84,7 +99,7 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Edit(Contract model)
         {
-            _contractServices.Edit(model.Id, model);       
+            _contractServices.Edit(model.Id, model);
 
             return RedirectToAction("Index");
         }
