@@ -31,7 +31,7 @@ namespace matallurgical_plant
 
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlServer(
-                    "Server=(localdb)\\mssqllocaldb; Database=CourseWorkPSP; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"));
+                    "Server=.; Database=CourseWorkPSP; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"));
 
             services.IoC();
         }
