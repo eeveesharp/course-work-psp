@@ -16,7 +16,7 @@ namespace matallurgical_plant.Models
 
         public Product Product { get; set; }
 
-        [Display(Name = "Время доставки")]
+        [Display(Name = "Дата доставки")]
 
         public DateTime DeliveryTime { get; set; }
 

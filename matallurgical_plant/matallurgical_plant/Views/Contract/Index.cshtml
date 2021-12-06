@@ -8,11 +8,16 @@
     body {
         background-image: url(https://github.com/ultoRjs/psp/blob/lab2/lab2/back3.jpg?raw=true);
     }
+    .AddProduct {
+        font-weight: bold;
+        font-size: 20px;
+    }
 </style>
-<div class="text-center" b>
 
-    @Html.ActionLink("Add contract ", "Add")
-    <table>
+<span class="AddProduct">@Html.ActionLink("Добавить договор", "Add")</span>
+
+<table class="table">
+    <thead>
         <tr>
             <th>Id</th>
             <th>Id Клиента</th>
@@ -20,7 +25,10 @@
             <th>Поставщик</th>
             <th>Количество</th>
             <th>Итоговая цена</th>
+            <th></th>
         </tr>
+    </thead>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -49,12 +57,12 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit ", "Edit", new { id = item.Id, item })
-                    @Html.ActionLink("Details ", "Details", new { id = item.Id })
-                    @Html.ActionLink("Delete ", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Изменить ", "Edit", new { id = item.Id, item }) |
+                    @Html.ActionLink("Подробнее ", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить ", "Delete", new { id = item.Id })
                 </td>
 
             </tr>
         }
-    </table>
-</div>
+    </tbody>
+</table>

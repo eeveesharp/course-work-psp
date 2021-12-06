@@ -4,6 +4,10 @@ using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace matallurgical_plant.Controllers
 {
@@ -13,16 +17,19 @@ namespace matallurgical_plant.Controllers
         private readonly ISpecificationService _specificationServices;
         private readonly IUserService _userService;
         private readonly IProductService _productService;
+        private readonly AppDbContext _appDbContext;
 
         public ContractController(ISpecificationService specificationServices,
             IUserService userService,
             IContractService contractServices,
-            IProductService productService)
+            IProductService productService,
+            AppDbContext appDbContext)
         {
             _userService = userService;
             _specificationServices = specificationServices;
             _contractServices = contractServices;
             _productService = productService;
+            _appDbContext = appDbContext;
 
         }
         // GET: ProductController/Index
@@ -48,18 +55,23 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Add(Contract model)
         {
-
-          
+            var quantity = _specificationServices.GetById(model.SpecificationId).Product.Quantity;
+            var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
 
             if (model.Quantity <= 0)
             {
                 ModelState.AddModelError("Quantity", "Вы не можете указать количество 0 или меньше");
+
+                return View(model);
+            }
+            else if (model.Quantity > quantity)
+            {
+                ModelState.AddModelError("Quantity", "Вы не можете указать количество больше чем на складе");
+
                 return View(model);
             }
             else
             {
-                var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
-
                 model.FinalPrice = (price * model.Quantity).ToString();
 
                 _contractServices.Create(model);
@@ -77,7 +89,6 @@ namespace matallurgical_plant.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-
             _contractServices.Delete(id);
 
             return RedirectToAction("Index");

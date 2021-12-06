@@ -7,26 +7,34 @@ using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace matallurgical_plant.Controllers
 {
     public class UserController : Controller
     {
         private readonly IUserService _userServices;
-        private readonly AppDbContext _db;
+        private readonly AppDbContext _appDbContext;
 
         public UserController(
-            IUserService userServices)
+            IUserService userServices,
+            AppDbContext appDbContext)
         {
             _userServices = userServices;
-
+            _appDbContext = appDbContext;
         }
         // GET: ProductController/Index
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var model = _userServices.GetAll();
+            var movies = from m in _appDbContext.Users
+                         select m;
 
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.SecondName.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
         }
 
         [HttpGet]

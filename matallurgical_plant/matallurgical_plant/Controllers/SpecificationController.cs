@@ -8,6 +8,7 @@ using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace matallurgical_plant.Controllers
 {
@@ -15,14 +16,16 @@ namespace matallurgical_plant.Controllers
     {
         private readonly ISpecificationService _specificationServices;
         private readonly IProductService _productService;
-        private readonly AppDbContext _db;
+        private readonly AppDbContext _appDbContext;
 
         public SpecificationController(
             ISpecificationService specificationServices,
-            IProductService productService)
+            IProductService productService,
+            AppDbContext appDbContext)
         {
             _specificationServices = specificationServices;
             _productService = productService;
+            _appDbContext = appDbContext;
         }
 
         // GET: ProductController/Index

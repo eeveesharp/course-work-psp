@@ -3,27 +3,38 @@ using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace matallurgical_plant.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductService _productServices;
-        private readonly AppDbContext _db;
+        private readonly AppDbContext _appDbContext;
 
         public ProductController(
-            ILogger<HomeController> logger,
-            IProductService productServices)
+            IProductService productServices,
+            AppDbContext appDbContext)
         {
             _productServices = productServices;
+            _appDbContext = appDbContext;
 
         }
         // GET: ProductController/Index
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var model = _productServices.GetAll();
+            var movies = from m in _appDbContext.Products
+                         select m;
 
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.NameProduct.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
         }
 
         [HttpGet]
@@ -37,7 +48,16 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Add(Product model)
         {
-            _productServices.Create(model);
+            if (model.Quantity <= 0)
+            {
+                ModelState.AddModelError("Quantity", "Количество не может быть меньше либо равно 0");
+
+                return View(model);
+            }
+            else
+            {
+                _productServices.Create(model);
+            }            
 
             return RedirectToAction("Index");
         }
@@ -56,15 +76,15 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditProduct(int id)
+        public IActionResult Edit(int id)
         {
             var model = _productServices.GetById(id);
 
-            return View("EditProduct", model);
+            return View("Edit", model);
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Product model)
+        public IActionResult Edit(Product model)
         {
             _productServices.Edit(model.Id, model);
 
@@ -72,11 +92,11 @@ namespace matallurgical_plant.Controllers
         }
 
         [HttpGet]
-        public IActionResult DetailsProduct(int id)
+        public IActionResult Details(int id)
         {
             var model = _productServices.GetById(id);
 
-            return View("DetailsProduct", model);
+            return View("Details", model);
         }
     }
 }
