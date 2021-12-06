@@ -24,17 +24,19 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)          
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UserId)
+            @Html.ActionLink("Подробнее ", "Details", "User", new {id = Model.UserId})
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SpecificationId)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SpecificationId)
+            @Html.ActionLink("Подробнее ", "Details", "Specification", new { id = Model.SpecificationId })
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Provider)
@@ -52,7 +54,7 @@
             @Html.DisplayNameFor(model => model.FinalPrice)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FinalPrice)
+            @Html.DisplayFor(model => model.FinalPrice)<span>(BYN)</span>
         </dd>
     </dl>
 </div>

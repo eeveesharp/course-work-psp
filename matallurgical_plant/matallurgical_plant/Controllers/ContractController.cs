@@ -103,6 +103,10 @@ namespace matallurgical_plant.Controllers
         public IActionResult Edit(int id)
         {
             var model = _contractServices.GetById(id);
+            var specifications = _specificationServices.GetAll();
+            var users = _userService.GetAll();
+            ViewBag.Specifications = new SelectList(specifications, "Id", "Id");
+            ViewBag.Users = new SelectList(users, "Id", "SecondName");
 
             return View("Edit", model);
         }
@@ -110,7 +114,32 @@ namespace matallurgical_plant.Controllers
         [HttpPost]
         public IActionResult Edit(Contract model)
         {
-            _contractServices.Edit(model.Id, model);
+            var quantity = _specificationServices.GetById(model.SpecificationId).Product.Quantity;
+            var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
+            
+            if (model.Quantity <= 0)
+            {
+                ModelState.AddModelError("Quantity", "Вы не можете указать количество 0 или меньше");
+
+                return View(model);
+            }
+            else if (model.Quantity > quantity)
+            {
+                ModelState.AddModelError("Quantity", "Вы не можете указать количество больше чем на складе");
+
+                return View(model);
+            }
+            else
+            {
+                model.FinalPrice = (price * model.Quantity).ToString();
+                _contractServices.Edit(model.Id, model);
+
+                var product = _productService.GetById(model.Specification.Product.Id);
+
+                product.Quantity -= model.Quantity;
+
+                _productService.Edit(product.Id, product);
+            }
 
             return RedirectToAction("Index");
         }

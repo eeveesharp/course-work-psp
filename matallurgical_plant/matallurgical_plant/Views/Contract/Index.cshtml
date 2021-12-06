@@ -19,10 +19,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Id Клиента</th>
             <th>Id Спецификации</th>
-            <th>Поставщик</th>
             <th>Количество</th>
             <th>Итоговая цена</th>
             <th></th>
@@ -33,19 +30,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.Id)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => item.UserId)
-                </td>
-
-                <td>
                     @Html.DisplayFor(model => item.SpecificationId)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(model => item.Provider)
                 </td>
 
                 <td>
