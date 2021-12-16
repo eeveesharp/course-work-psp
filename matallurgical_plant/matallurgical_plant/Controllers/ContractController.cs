@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace matallurgical_plant.Controllers
 {
@@ -32,6 +33,24 @@ namespace matallurgical_plant.Controllers
             _appDbContext = appDbContext;
 
         }
+
+        [HttpGet]
+        public IActionResult DownloadExcelReport()
+        {
+            var file = _contractServices.GenerateExcelReport();
+            using (var stream = new MemoryStream())
+            {
+                file.SaveAs(stream);
+                var content = stream.ToArray();
+
+                file.Dispose();
+                return File(content,
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "Отчет.xlsx");
+            }
+        }
+
+
         // GET: ProductController/Index
         public IActionResult Index()
         {
@@ -61,13 +80,19 @@ namespace matallurgical_plant.Controllers
             if (model.Quantity <= 0)
             {
                 ModelState.AddModelError("Quantity", "Вы не можете указать количество 0 или меньше");
-
+                var specifications = _specificationServices.GetAll();
+                var users = _userService.GetAll();
+                ViewBag.Specifications = new SelectList(specifications, "Id", "Id");
+                ViewBag.Users = new SelectList(users, "Id", "SecondName");
                 return View(model);
             }
             else if (model.Quantity > quantity)
             {
                 ModelState.AddModelError("Quantity", "Вы не можете указать количество больше чем на складе");
-
+                var specifications = _specificationServices.GetAll();
+                var users = _userService.GetAll();
+                ViewBag.Specifications = new SelectList(specifications, "Id", "Id");
+                ViewBag.Users = new SelectList(users, "Id", "SecondName");
                 return View(model);
             }
             else
