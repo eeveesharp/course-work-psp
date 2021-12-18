@@ -1,7 +1,7 @@
 ﻿@model matallurgical_plant.Models.Product
 
 @{
-    ViewData["Title"] = "EditProduct";
+    ViewData["Title"] = "Edit";
 }
 <style>
     body {
@@ -16,7 +16,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditProduct" method="post">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NameProduct" class="control-label"></label>
