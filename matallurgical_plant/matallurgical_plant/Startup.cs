@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using matallurgical_plant.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,14 +19,13 @@ namespace matallurgical_plant
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        { 
+        {
             services.AddControllersWithViews();
 
             services.AddControllers();
 
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlServer(
-                    //"Server=.; Database=CourseWorkPSP; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"));
                     "Server=(localdb)\\mssqllocaldb; Database=CourseWorkPSP; Persist Security Info=False; MultipleActiveResultSets=True; Trusted_Connection=True;"));
 
             services.IoC();

@@ -1,10 +1,5 @@
 ﻿using matallurgical_plant.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace matallurgical_plant.Domain
 {
@@ -39,10 +34,10 @@ namespace matallurgical_plant.Domain
             new Product
             {
                 Id = 2,
-                NameProduct = "sdfsdfsdf",
+                NameProduct = "Труба",
                 Price = 530,
                 Quantity = 2120,
-                Material = "Жевамб"
+                Material = "Металл"
             });
         }
     }

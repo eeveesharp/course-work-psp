@@ -1,13 +1,7 @@
 ﻿using matallurgical_plant.Domain;
-using matallurgical_plant.Models;
-using matallurgical_plant.Services;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace matallurgical_plant.Controllers
 {
@@ -32,6 +26,6 @@ namespace matallurgical_plant.Controllers
 
             return View(model);
         }
-      
+
     }
 }

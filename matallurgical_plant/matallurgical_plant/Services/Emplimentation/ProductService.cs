@@ -1,13 +1,8 @@
-﻿using ClosedXML.Excel;
-using matallurgical_plant.Domain;
+﻿using matallurgical_plant.Domain;
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace matallurgical_plant.Services
 {

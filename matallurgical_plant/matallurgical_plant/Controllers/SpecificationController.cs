@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using matallurgical_plant.Domain;
+﻿using matallurgical_plant.Domain;
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace matallurgical_plant.Controllers
 {

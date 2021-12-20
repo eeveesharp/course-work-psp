@@ -3,11 +3,6 @@ using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using System.IO;
 
 namespace matallurgical_plant.Controllers
@@ -141,7 +136,7 @@ namespace matallurgical_plant.Controllers
         {
             var quantity = _specificationServices.GetById(model.SpecificationId).Product.Quantity;
             var price = _specificationServices.GetById(model.SpecificationId).Product.Price;
-            
+
             if (model.Quantity <= 0)
             {
                 ModelState.AddModelError("Quantity", "Вы не можете указать количество 0 или меньше");

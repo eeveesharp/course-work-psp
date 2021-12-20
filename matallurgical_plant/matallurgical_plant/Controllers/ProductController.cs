@@ -2,11 +2,10 @@
 using matallurgical_plant.Models;
 using matallurgical_plant.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace matallurgical_plant.Controllers
 {
@@ -57,7 +56,7 @@ namespace matallurgical_plant.Controllers
             else
             {
                 _productServices.Create(model);
-            }            
+            }
 
             return RedirectToAction("Index");
         }
