@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="matallurgical_plant.Services.Emplimentation.ContractService" BaseTypeListCollapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAEAAEACAgABAAAAAIA=</HashCode>
+      <FileName>Services\Emplimentation\ContractService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="matallurgical_plant.Services.Emplimentation.SpecificationService" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAEAAEACAgAAAAAAAIA=</HashCode>
+      <FileName>Services\Emplimentation\SpecificationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="matallurgical_plant.Services.Emplimentation.UserService" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAEAAEACAgAAAAAAAIA=</HashCode>
+      <FileName>Services\Emplimentation\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="matallurgical_plant.Services.ProductService" BaseTypeListCollapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAEAAEACAgAAAAAAAIA=</HashCode>
+      <FileName>Services\Emplimentation\ProductService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="matallurgical_plant.Domain.AppDbContext">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAAAEAAQ=</HashCode>
+      <FileName>Domain\AppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.Contract">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAEABAAAgAAAAgAAAAAAABAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Contract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.ContractViewModel">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAAgAAAAgAAAAAAABAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\ContractViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.Product">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAEAQAAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.ProductSpecificationViewModel">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\ProductSpecificationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.Specification">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\Specification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Models.User">
+    <Position X="16.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEgAAAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Controllers.ContractController">
+    <Position X="4.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQAAAABAAAAAAAAAAAAAAEAAQAKIAEECAAAQAA=</HashCode>
+      <FileName>Controllers\ContractController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Controllers.HomeController">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAgAAAAAAAAAAAAAAAAIAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Controllers.ProductController">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAgAAABAAAAAAAAAAAAAAEAAQACAAEACAAAAAA=</HashCode>
+      <FileName>Controllers\ProductController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Controllers.SpecificationController">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQAAAABAAAAAAAAAAAAAAEAAQACIAEACAAAAAA=</HashCode>
+      <FileName>Controllers\SpecificationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="matallurgical_plant.Controllers.UserController">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAAAABAAAAAAAAAAAAAAEAAQACAAEACAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="matallurgical_plant.Services.Interfaces.IContractService">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\IContractService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="matallurgical_plant.Services.Interfaces.IProductService">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="matallurgical_plant.Services.Interfaces.IService&lt;T&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="6.312" Y="2.373" />
+        <Point X="6.312" Y="2.55" />
+        <Point X="3" Y="2.55" />
+        <Point X="3" Y="2.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\IProductService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="matallurgical_plant.Services.Interfaces.IService&lt;T&gt;">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAEACAgAAAAAAAIA=</HashCode>
+      <FileName>Services\Interfaces\IService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="matallurgical_plant.Services.Interfaces.ISpecificationService">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\ISpecificationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="matallurgical_plant.Services.Interfaces.IUserService">
+    <Position X="6.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
